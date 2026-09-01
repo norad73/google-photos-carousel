@@ -1,9 +1,10 @@
 Google Photos Fullscreen Gallery
 
 What it does
-- Open https://photos.google.com
-- Click a photo.
+- Open https://photos.google.com and run a search.
+- Click a photo in the search results.
 - Chrome enters true fullscreen automatically.
+- Photos opened from anywhere else (main library, albums) are left alone.
 - Use Google Photos' normal Left / Right arrow keys to move through photos.
 - Press Esc to exit fullscreen.
 

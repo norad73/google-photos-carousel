@@ -1,21 +1,24 @@
 (() => {
   'use strict';
 
-  function clickedPhoto(event) {
+  function onSearchResults() {
+    return location.pathname.startsWith('/search');
+  }
+
+  function clickedSearchResultPhoto(event) {
     const path = event.composedPath ? event.composedPath() : [];
     for (const node of path) {
       if (!(node instanceof Element)) continue;
 
-      // Google Photos thumbnails and opened photos are normally rendered as <img>.
-      if (node.tagName === 'IMG') return true;
-
-      // Some Photos layouts wrap an image inside a clickable tile.
-      if (
-        (node.matches('a, button, [role="button"], [role="link"]')) &&
-        node.querySelector?.('img')
-      ) {
+      // Grid tiles in search results are anchors pointing at the photo route,
+      // e.g. href="./photo/AF1Qip...". UI icons never carry that href, so this
+      // keeps avatars and toolbar buttons from triggering fullscreen.
+      if (node.tagName === 'A' && (node.getAttribute('href') || '').includes('/photo/')) {
         return true;
       }
+
+      // Stop climbing once we leave the results grid.
+      if (node.tagName === 'BODY') break;
     }
     return false;
   }
@@ -24,7 +27,8 @@
     'click',
     (event) => {
       if (document.fullscreenElement) return;
-      if (!clickedPhoto(event)) return;
+      if (!onSearchResults()) return;
+      if (!clickedSearchResultPhoto(event)) return;
 
       // This runs directly from the user's click, which satisfies the browser's
       // user-activation requirement for the Fullscreen API.
