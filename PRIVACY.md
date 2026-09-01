@@ -24,13 +24,12 @@ loads. It creates no account and requires no sign-in.
 
 ## Page access
 
-The extension runs a content script on `https://www.google.com/search` pages.
-It takes no action unless the page is an image search (`udm=2` or `tbm=isch`).
+The extension is active only on image search result pages. It takes no action
+on any other page.
 
-On those pages it reads the markup and the inline data that Google already
-places in the page, in order to find the address of the full-resolution version
-of each thumbnail. This reading happens entirely inside your browser. Nothing
-that is read is recorded, and nothing is sent anywhere.
+When you click a result, it opens the fullscreen viewer and loads the largest
+available version of that image. All of this happens locally in your browser.
+Nothing is recorded, and nothing is sent anywhere.
 
 ## Network activity
 
@@ -52,10 +51,9 @@ lending purpose.
 
 ## Permissions
 
-Host access to `https://www.google.com/search` is the only permission the
-extension requests. It is required in order to detect which search result you
-clicked, to draw the viewer over the page, and to locate the full-resolution
-image. No broader access to your browsing is requested.
+The extension requests no storage, analytics, or account permissions. It only
+needs to run on image search result pages so it can open the viewer when you
+click a result. No broader access to your browsing is requested.
 
 ## Changes to this policy
 
