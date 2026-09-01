@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Google Photos Fullscreen Gallery",
+  "version": "1.0.0",
+  "description": "Automatically enters fullscreen when you click a photo in Google Photos, while keeping native arrow-key navigation.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://photos.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
